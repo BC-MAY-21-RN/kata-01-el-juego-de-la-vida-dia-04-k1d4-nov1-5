@@ -91,9 +91,9 @@ module.exports = class Grid {
         else {
           if (col === 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
             this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
             this.grid[fila - 1][col] == "." ? null : this.vivas++;
+            this.grid[fila][col + 1] == "." ? null : this.vivas++;
           } else if (
             col >= this.columns.length - this.columns.length - 1 ||
             col <= this.columns.length - 2
