@@ -36,11 +36,7 @@ module.exports = class Grid {
             col <= this.columns.length - 2
           ) {
             //(VERTICALES DEL MEDIO))
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            this.verticalesDelMedio(fila, col, +1)
           } //ESQUINA SUPERIOR DERECHA LISTO
           else {
             this.grid[fila][col - 1] == "." ? null : this.vivas++;
@@ -121,6 +117,15 @@ module.exports = class Grid {
     this.grid[fila + numero][col + numero] == "." ? null : this.vivas++;
     this.grid[fila + numero][col] == "." ? null : this.vivas++;
   }
+
+  //verticales del medio
+verticalesDelMedio(fila, col, num){
+            this.grid[fila][col - 1] == "." ? null : this.vivas++;
+            this.grid[fila][col + num] == "." ? null : this.vivas++;
+            this.grid[fila + num][col + num] == "." ? null : this.vivas++;
+            this.grid[fila + num][col - num] == "." ? null : this.vivas++;
+            this.grid[fila + num][col] == "." ? null : this.vivas++;
+}
 
   printGrid() {
     console.table(this.grid);
