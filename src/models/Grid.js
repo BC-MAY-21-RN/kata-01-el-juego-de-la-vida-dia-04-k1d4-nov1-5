@@ -26,16 +26,12 @@ module.exports = class Grid {
   newGrid() {
     for (let fila = 0; fila < this.rows; fila++) {
       for (let col = 0; col < this.columns; col++) {
-
         if (fila == 0) {
           //Primera fila
           if (col == 0) {
-            //Primera ESQUINA SUPERIOR izquierda LISTO
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            this.esquinaSuperioreInferior(fila,col, +1)
           } else if (
-            col >= this.columns.length - this.columns.length-1 ||
+            col >= this.columns.length - this.columns.length - 1 ||
             col <= this.columns.length - 2
           ) {
             //(VERTICALES DEL MEDIO))
@@ -50,10 +46,7 @@ module.exports = class Grid {
             this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
             this.grid[fila + 1][col] == "." ? null : this.vivas++;
           }
-        } 
-        
-        
-        else if (
+        } else if (
           fila >= this.rows.length - this.rows.length - 1 ||
           fila <= this.rows.length - 2
         ) {
@@ -65,7 +58,7 @@ module.exports = class Grid {
             this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
             this.grid[fila + 1][col] == "." ? null : this.vivas++;
           } else if (
-            col >= this.columns.length - this.columns.length-1 ||
+            col >= this.columns.length - this.columns.length - 1 ||
             col <= this.columns.length - 2
           ) {
             //(VERTICALES DEL MEDIO))
@@ -91,9 +84,7 @@ module.exports = class Grid {
         else {
           if (col === 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
-            this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
+            this.esquinaSuperioreInferior(fila,col,-1)
           } else if (
             col >= this.columns.length - this.columns.length - 1 ||
             col <= this.columns.length - 2
@@ -116,10 +107,16 @@ module.exports = class Grid {
           this.grid[fila][col]
         );
         console.log(this.vivas);
-        this.vivas=0;
+        this.vivas = 0;
       }
-      
     }
+  }
+
+  esquinaSuperioreInferior(fila,col,numero){
+    //Primera ESQUINA INFERIOR IZQUIERDA LISTO
+    this.grid[fila][col + numero] == "." ? null : this.vivas++;
+    this.grid[fila + numero][col] == "." ? null : this.vivas++;
+    this.grid[fila + numero][col + 1] == "." ? null : this.vivas++;
   }
 
   printGrid() {
