@@ -89,7 +89,7 @@ module.exports = class Grid {
 
         //Ultima fila del array (ESQUINA INFERIOR IZQUIERDA)
         else {
-          if (col == 0) {
+          if (col === 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
             this.grid[fila][col + 1] == "." ? null : this.vivas++;
             this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
